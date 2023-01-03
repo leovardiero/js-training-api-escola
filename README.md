@@ -26,3 +26,9 @@ npx sequelize seed:generate --name <name>
 ```
 npx sequelize db:seed:all
 ```
+
+===
+
+fix nginx:
+sudo pkill -f nginx & wait $!
+sudo systemctl start nginx
