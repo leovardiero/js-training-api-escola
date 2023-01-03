@@ -17,7 +17,7 @@ var _PhotoRoutes = require('./routes/PhotoRoutes'); var _PhotoRoutes2 = _interop
 const whiteList = [
   'https://js.dev-lbv.com.br',
   'http://localhost:3001',
-  'https://pt.wikipedia.org/',
+  'https://pt.wikipedia.org',
 ];
 
 const corsOpetion = {
