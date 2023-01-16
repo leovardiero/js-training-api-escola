@@ -16,7 +16,7 @@ import photoRoute from './routes/PhotoRoutes';
 
 const whiteList = [
   'https://js.dev-lbv.com.br',
-  'http://localhost:3001',
+  'http://localhost:3000',
   'https://pt.wikipedia.org',
 ];
 
