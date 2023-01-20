@@ -1,10 +1,10 @@
-import Aluno from '../models/Aluno';
+import Student from '../models/Student';
 import Photo from '../models/Photo';
 
-class AlunoController {
+class StudentController {
   // Index - Show all "Alunos"
   async index(req, res) {
-    const alunos = await Aluno.findAll({
+    const students = await Student.findAll({
       attributes: ['id', 'nome', 'sobrenome', 'email', 'data_nascimento'],
       order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
       include: {
@@ -12,15 +12,15 @@ class AlunoController {
         attributes: ['url', 'original_name', 'filename'],
       },
     });
-    res.json(alunos);
+    res.json(students);
   }
 
   // Create - Create a new "Aluno"
   async create(req, res) {
     try {
-      const aluno = await Aluno.create(req.body);
+      const student = await Student.create(req.body);
 
-      return res.status(200).json(aluno);
+      return res.status(200).json(student);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -34,14 +34,14 @@ class AlunoController {
       const { id } = req.params;
       if (!id) {
         return res.satus(400).json({
-          errors: ['Missing ID'],
+          errors: ['The ID is missing'],
         });
       }
 
-      const aluno = await Aluno.findByPk(
+      const student = await Student.findByPk(
         req.params.id,
         {
-          attributes: ['id', 'nome', 'sobrenome', 'email', 'data_nascimento'],
+          attributes: ['id', 'name', 'last_name', 'email', 'date_of_birth'],
           order: [['id', 'DESC'], [Photo, 'id', 'DESC']],
           include: {
             model: Photo,
@@ -50,13 +50,13 @@ class AlunoController {
         },
       );
 
-      if (!aluno) {
+      if (!student) {
         return res.satus(400).json({
-          errors: ['Aluno not find'],
+          errors: ['It was not possible find the student'],
         });
       }
 
-      return res.status(200).json(aluno);
+      return res.status(200).json(student);
     } catch (e) {
       return res.status(400).json(null);
     }
@@ -68,21 +68,21 @@ class AlunoController {
       const { id } = req.params;
       if (!id) {
         return res.satus(400).json({
-          errors: ['Missing ID'],
+          errors: ['The ID is missing'],
         });
       }
 
-      const aluno = await Aluno.findByPk(id);
+      const student = await Student.findByPk(id);
 
-      if (!aluno) {
+      if (!student) {
         return res.satus(400).json({
-          errors: ['Aluno not find'],
+          errors: ['It was not possible find the student'],
         });
       }
 
-      const newAluno = await aluno.update(req.body);
+      const newStudent = await student.update(req.body);
 
-      return res.status(200).json(newAluno);
+      return res.status(200).json(newStudent);
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.msg),
@@ -96,22 +96,22 @@ class AlunoController {
       const { id } = req.params;
       if (!id) {
         return res.satus(400).json({
-          errors: ['Missing ID'],
+          errors: ['The ID is missing'],
         });
       }
 
-      const aluno = await Aluno.findByPk(id);
+      const student = await Student.findByPk(id);
 
-      if (!aluno) {
+      if (!student) {
         return res.satus(400).json({
-          errors: ['Aluno not find'],
+          errors: ['It was not possible find the student'],
         });
       }
 
-      await aluno.destroy();
+      await student.destroy();
 
       return res.status(200).json({
-        msg: ['Aluno deleted'],
+        msg: ['Student deleted'],
       });
     } catch (e) {
       return res.status(400).json(null);
@@ -119,4 +119,4 @@ class AlunoController {
   }
 }
 
-export default new AlunoController();
+export default new StudentController();

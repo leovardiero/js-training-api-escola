@@ -11,13 +11,15 @@ import express from 'express';
 import homeRoutes from './routes/homeRoutes';
 import userRoute from './routes/UserRoutes';
 import tokenRoute from './routes/TokenRoutes';
-import alunoRoute from './routes/AlunoRoutes';
+import studentRoute from './routes/StudentRoutes';
 import photoRoute from './routes/PhotoRoutes';
 
 const whiteList = [
   'https://js.dev-lbv.com.br',
   'http://localhost:3000',
-  'https://pt.wikipedia.org',
+  'http://localhost:3001',
+  'http://localhost:5001',
+  'http://localhost:5002',
 ];
 
 const corsOpetion = {
@@ -52,7 +54,7 @@ class App {
     this.app.use('/', homeRoutes);
     this.app.use('/user', userRoute);
     this.app.use('/token', tokenRoute);
-    this.app.use('/aluno', alunoRoute);
+    this.app.use('/student', studentRoute);
     this.app.use('/photo', photoRoute);
   }
 }

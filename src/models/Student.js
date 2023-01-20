@@ -1,42 +1,45 @@
 import Sequelize, { Model } from 'sequelize';
 
-export default class Aluno extends Model {
+export default class Student extends Model {
   static init(sequelize) {
     super.init(
       {
-        nome: {
+        name: {
           type: Sequelize.STRING,
           defaultValue: '',
           validate: {
             len: {
               args: [3, 255],
-              msg: 'Nome precisa ter entre 3 e 255 caracteres',
+              msg: 'Name must contain between 3 and 255 characters',
             },
           },
         },
-        sobrenome: {
+
+        last_name: {
           type: Sequelize.STRING,
           defaultValue: '',
           validate: {
             len: {
               args: [3, 255],
-              msg: 'Nome precisa ter entre 3 e 255 caracteres',
+              msg: 'Last name must contain between 3 and 255 characters',
             },
           },
         },
+
         email: {
           type: Sequelize.STRING,
           defaultValue: '',
           unique: {
-            msg: 'E-mail precisa ser único',
+            msg: 'E-mail must be unique',
           },
           validate: {
             isEmail: {
-              msg: 'Email precisa ser válido',
+              msg: 'E-mail must be a valid email',
             },
           },
         },
-        data_nascimento: {
+
+        date_of_birth: {
           type: Sequelize.STRING,
           defaultValue: '',
           validate: {
@@ -53,6 +56,6 @@ export default class Aluno extends Model {
   }
 
   static associate(models) {
-    this.hasMany(models.Photo, { foreignKey: 'aluno_id' });
+    this.hasMany(models.Photo, { foreignKey: 'student_id' });
   }
 }

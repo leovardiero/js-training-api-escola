@@ -10,7 +10,7 @@ export default class Photo extends Model {
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Campo não pode ser vazio',
+              msg: 'The original name cannot be empty',
             },
           },
         },
@@ -20,7 +20,7 @@ export default class Photo extends Model {
           defaultValue: '',
           validate: {
             notEmpty: {
-              msg: 'Campo não pode ser vazio',
+              msg: 'The filename cannot be empty',
             },
           },
         },
@@ -39,6 +39,6 @@ export default class Photo extends Model {
   }
 
   static associate(models) {
-    this.belongsTo(models.Aluno, { foreignKey: 'aluno_id' });
+    this.belongsTo(models.Student, { foreignKey: 'student_id' });
   }
 }

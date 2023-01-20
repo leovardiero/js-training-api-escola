@@ -1,6 +1,6 @@
 module.exports = {
   up: (queryInterface, Sequelize) => queryInterface.changeColumn(
-    'alunos',
+    'students',
     'email',
     {
       type: Sequelize.STRING,
