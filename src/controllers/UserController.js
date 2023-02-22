@@ -5,8 +5,8 @@ class UserController {
   async create(req, res) {
     try {
       const newUser = await User.create(req.body);
-      const { id, email, full_name } = newUser;
-      return res.json({ id, email, full_name });
+      const { id, email, name } = newUser;
+      return res.json({ id, email, name });
     } catch (e) {
       return res.status(400).json({
         errors: e.errors.map((err) => err.message),
@@ -17,7 +17,7 @@ class UserController {
   // Index
   async index(req, res) {
     try {
-      const users = await User.findAll({ attributes: ['id', 'full_name', 'email'] });
+      const users = await User.findAll({ attributes: ['id', 'name', 'email'] });
       return res.json(users);
     } catch (e) {
       return res.status(400).json(null);
@@ -28,9 +28,9 @@ class UserController {
   async show(req, res) {
     try {
       const user = await User.findByPk(req.params.id);
-      const { id, full_name, email } = user;
+      const { id, name, email } = user;
 
-      return res.json({ id, full_name, email });
+      return res.json({ id, name, email });
     } catch (e) {
       return res.status(400).json(null);
     }

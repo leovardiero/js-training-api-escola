@@ -24,12 +24,12 @@ class TokenController {
       });
     }
 
-    const { id } = user;
+    const { name, id } = user;
     const token = jwt.sign({ id, email }, process.env.TOKEN_SECRET, {
       expiresIn: process.env.TOKEN_EXPIRE,
     });
 
-    return res.json({ token, user: { nome: user.nome, id, email } });
+    return res.json({ token, user: { name, id, email } });
   }
 }
 
